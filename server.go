@@ -10,7 +10,7 @@ import (
 	"github.com/rokiyama/example-gqlgen2/graph"
 )
 
-const defaultPort = "8088"
+const defaultPort = "4000"
 
 func main() {
 	port := os.Getenv("PORT")

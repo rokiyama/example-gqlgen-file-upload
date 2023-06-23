@@ -7,6 +7,8 @@ package graph
 import (
 	"context"
 	"fmt"
+	"io"
+	"log"
 	"math/rand"
 
 	"github.com/99designs/gqlgen/graphql"
@@ -26,8 +28,14 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 }
 
 // SingleUpload is the resolver for the singleUpload field.
-func (r *mutationResolver) SingleUpload(ctx context.Context, file graphql.Upload) (bool, error) {
-	panic(fmt.Errorf("not implemented: SingleUpload - singleUpload"))
+func (r *mutationResolver) SingleUpload(ctx context.Context, file graphql.Upload) (string, error) {
+	log.Printf("%#v", file)
+	a, err := io.ReadAll(file.File)
+	if err != nil {
+		return "", err
+	}
+	log.Printf("%s", a)
+	return "success", nil
 }
 
 // Todos is the resolver for the todos field.
