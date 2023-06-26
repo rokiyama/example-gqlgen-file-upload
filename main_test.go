@@ -39,3 +39,25 @@ func TestUpload(t *testing.T) {
 
 	require.Equal(t, "success", resp.SingleUpload)
 }
+
+func TestMultipleUpload(t *testing.T) {
+	var resp struct {
+		MultipleUpload string
+	}
+	f1, err := os.Open("a.txt")
+	require.NoError(t, err)
+	f2, err := os.Open("b.txt")
+	require.NoError(t, err)
+	files := []*os.File{f1, f2}
+
+	err = c.Post(`mutation ($files: [Upload!]!) {
+		multipleUpload(files: $files)
+	}`,
+		&resp,
+		client.Var("files", files),
+		client.WithFiles(),
+	)
+	require.NoError(t, err)
+
+	require.Equal(t, "success", resp.MultipleUpload)
+}

@@ -30,11 +30,24 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 // SingleUpload is the resolver for the singleUpload field.
 func (r *mutationResolver) SingleUpload(ctx context.Context, file graphql.Upload) (string, error) {
 	log.Printf("%#v", file)
-	a, err := io.ReadAll(file.File)
+	v, err := io.ReadAll(file.File)
 	if err != nil {
 		return "", err
 	}
-	log.Printf("%s", a)
+	log.Printf("%s", v)
+	return "success", nil
+}
+
+// MultipleUpload is the resolver for the multipleUpload field.
+func (r *mutationResolver) MultipleUpload(ctx context.Context, files []*graphql.Upload) (string, error) {
+	log.Printf("%#v", files)
+	for _, file := range files {
+		v, err := io.ReadAll(file.File)
+		if err != nil {
+			return "", err
+		}
+		log.Printf("%s", v)
+	}
 	return "success", nil
 }
 

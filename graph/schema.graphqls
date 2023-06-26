@@ -25,4 +25,6 @@ type Mutation {
   createTodo(input: NewTodo!): Todo!
 
   singleUpload(file: Upload!): String!
+
+  multipleUpload(files: [Upload!]!): String!
 }
