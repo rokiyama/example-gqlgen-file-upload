@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd $(dirname $0)
+
 curl -v localhost:4000/query \
   -F operations='{
     "query": "mutation ($files: [Upload!]) { multipleUpload(files: $files) }",
