@@ -1,6 +1,6 @@
 package graph
 
-import "github.com/rokiyama/example-gqlgen2/graph/model"
+import "github.com/rokiyama/example-gqlgen-file-upload/graph/model"
 
 // This file will not be regenerated automatically.
 //

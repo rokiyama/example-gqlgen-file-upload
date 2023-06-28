@@ -1,9 +1,10 @@
-module github.com/rokiyama/example-gqlgen2
+module github.com/rokiyama/example-gqlgen-file-upload
 
 go 1.19
 
 require (
 	github.com/99designs/gqlgen v0.17.33
+	github.com/rs/cors v1.9.0
 	github.com/stretchr/testify v1.8.2
 	github.com/vektah/gqlparser/v2 v2.5.3
 )

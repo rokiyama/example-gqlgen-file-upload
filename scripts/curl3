@@ -1,0 +1,10 @@
+#!/bin/sh
+
+curl -v localhost:4000/query \
+  -F operations='{
+    "query": "mutation ($files: [Upload!]) { multipleUpload(files: $files) }",
+    "variables": {
+      "files": []
+    }
+  }' \
+  -F map='{}'

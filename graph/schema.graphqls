@@ -26,5 +26,5 @@ type Mutation {
 
   singleUpload(file: Upload!): String!
 
-  multipleUpload(files: [Upload!]!): String!
+  multipleUpload(files: [Upload!]): String!
 }

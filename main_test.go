@@ -6,7 +6,7 @@ import (
 
 	"github.com/99designs/gqlgen/client"
 	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/rokiyama/example-gqlgen2/graph"
+	"github.com/rokiyama/example-gqlgen-file-upload/graph"
 	"github.com/stretchr/testify/require"
 )
 

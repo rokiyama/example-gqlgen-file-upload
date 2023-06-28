@@ -1,0 +1,12 @@
+#!/bin/sh
+
+curl -v localhost:4000/query \
+  -F operations='{
+    "query": "mutation ($files: [Upload!]) { multipleUpload(files: $files) }",
+    "variables": {
+      "files": [null, null]
+    }
+  }' \
+  -F map='{ "0": ["variables.files.0"], "1": ["variables.files.1"] }' \
+  -F 0=@a.txt \
+  -F 1=@b.txt

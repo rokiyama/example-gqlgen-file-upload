@@ -12,7 +12,7 @@ import (
 	"math/rand"
 
 	"github.com/99designs/gqlgen/graphql"
-	"github.com/rokiyama/example-gqlgen2/graph/model"
+	"github.com/rokiyama/example-gqlgen-file-upload/graph/model"
 )
 
 // CreateTodo is the resolver for the createTodo field.
@@ -40,6 +40,10 @@ func (r *mutationResolver) SingleUpload(ctx context.Context, file graphql.Upload
 
 // MultipleUpload is the resolver for the multipleUpload field.
 func (r *mutationResolver) MultipleUpload(ctx context.Context, files []*graphql.Upload) (string, error) {
+	if files == nil {
+		log.Print("files is nil")
+		return "empty", nil
+	}
 	log.Printf("%#v", files)
 	for _, file := range files {
 		v, err := io.ReadAll(file.File)
