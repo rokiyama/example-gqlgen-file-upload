@@ -10,6 +10,8 @@ import (
 	"io"
 	"log"
 	"math/rand"
+	"os"
+	"path"
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/rokiyama/example-gqlgen-file-upload/graph/model"
@@ -46,11 +48,16 @@ func (r *mutationResolver) MultipleUpload(ctx context.Context, files []*graphql.
 	}
 	log.Printf("%#v", files)
 	for _, file := range files {
-		v, err := io.ReadAll(file.File)
+		path := path.Join("tmp", file.Filename)
+		outFile, err := os.Create(path)
 		if err != nil {
 			return "", err
 		}
-		log.Printf("%s", v)
+		defer outFile.Close()
+		if _, err := io.Copy(outFile, file.File); err != nil {
+			return "", err
+		}
+		log.Printf("wrote: %s, file=%#v", path, file)
 	}
 	return "success", nil
 }

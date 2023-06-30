@@ -10,5 +10,5 @@ curl -v localhost:4000/query \
     }
   }' \
   -F map='{ "0": ["variables.files.0"], "1": ["variables.files.1"] }' \
-  -F 0=@a.txt \
-  -F 1=@b.txt
+  -F 0=@1.jpg \
+  -F 1=@2.jpg
